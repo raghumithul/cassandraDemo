@@ -62,7 +62,7 @@ public class ProductDaoImpl implements ProductDao {
 	public void deleteProduct(int productId) {
 		final Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
 		final Session session = cluster.connect(getKeyspace());
-		PreparedStatement statement = session.prepare("delete FROM users where id = ?;");
+		PreparedStatement statement = session.prepare("delete FROM product where productId = ?;");
 		BoundStatement boundStatement = new BoundStatement(statement);
 		session.execute(boundStatement.bind(productId));
 		cluster.close();

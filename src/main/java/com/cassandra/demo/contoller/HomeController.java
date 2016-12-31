@@ -68,4 +68,17 @@ public class HomeController {
 		return model;
 	}
 	
+	
+	@RequestMapping(value ="/deleteProduct", method=RequestMethod.POST)
+	public ModelAndView deleteProduct(@ModelAttribute("product") Product product){
+		//TODO Validation
+		productService.deleteProduct(product.productId); 
+		List<Product> productList = productService.getAllProducts();
+		ModelAndView model = new ModelAndView("products");
+		model.addObject("productList", productList);
+	    model.addObject("product", new Product());
+		return model;
+	}
+	
+	
 }

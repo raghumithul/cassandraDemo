@@ -11,13 +11,24 @@
 
 <h2>Product Information</h2>
 <c:if test="${not empty productList}">
-
-		<ul>
-			<c:forEach var="product" items="${productList}">
-				<li>${product.productName}</li>
-			</c:forEach>
-		</ul>
-
+<table id="productTable" >
+    <thead>
+        <tr>
+            <th>Product Id</th>
+            <th>Product Name</th>
+            <th>Product Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <c:forEach var="product" items="${productList}">
+            <tr>
+                <td>${product.productId}</td>
+                <td>${product.productName}</td>
+                <td>${product.productDescription}</td>
+            </tr>       
+        </c:forEach>
+    </tbody>
+</table>
 </c:if>
 
 
@@ -44,5 +55,22 @@
     </tr>
 </table>  
 </form:form>
+
+
+<h2>Delete Product</h2>
+<form:form method="POST" action="deleteProduct" commandName="product">
+   <table>
+    <tr>
+        <td><form:label path="productId">Product ID</form:label></td>
+        <td><form:input path="productId" /></td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <input type="submit" value="Submit"/>
+        </td>
+    </tr>
+</table>  
+</form:form>
+
 </body>
 </html>
